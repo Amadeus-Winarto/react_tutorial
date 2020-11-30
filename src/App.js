@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 
 class App extends React.Component {
-  render(){
+  render() {
     return  <BrowserRouter>
             <div>
               <Main />

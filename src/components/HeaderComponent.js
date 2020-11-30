@@ -3,7 +3,7 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron} 
 import { NavLink } from 'react-router-dom';
 
 class Header extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             isNavOpen : false

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';  
 
 
-function RenderMenuItem({ dish }){
+function RenderMenuItem({ dish }) {
     return  <Card>
                 <CardImg width="100%" src={dish.image} alt={dish.name}/>
                 <CardBody>
@@ -12,8 +12,8 @@ function RenderMenuItem({ dish }){
             </Card>; 
 }
 
-function RenderComments({ comments }){
-    if(comments === null || comments === undefined){
+function RenderComments({ comments }) {
+    if(comments === null || comments === undefined) {
         return <div/>;
     } else{
         const comments_list = comments.map(single_comment => {
@@ -29,7 +29,7 @@ function RenderComments({ comments }){
 }
 
 function DishDetail({ dish }) {
-    if (dish === null || dish === undefined){
+    if (dish === null || dish === undefined) {
         return <div></div>;
     } else {        
         return  <div className="container">  

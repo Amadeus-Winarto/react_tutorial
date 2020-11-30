@@ -1,6 +1,14 @@
 {
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
 	"extends": ["eslint:recommended"],
 	"rules":{
-		"semi": "error"
+		"semi": "error", 
+		"no-unused-vars": 0
 	}
 }
