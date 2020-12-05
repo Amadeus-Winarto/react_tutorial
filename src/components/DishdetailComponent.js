@@ -23,6 +23,7 @@ class CommentForm extends React.Component{
 
     handleSubmits(values){
         this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render(){
@@ -35,12 +36,12 @@ class CommentForm extends React.Component{
                         <Row className="form-group">
                             <Label htmlFor="rating" md={12}>Rating</Label>
                             <Col md={12}>
-                                <Control.select model=".rating" className="form-control" id="rating" name="rating">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <Control.select model=".rating" className="form-control" id="rating" name="rating" defaultValue="1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
                                 </Control.select>
                             </Col>
                         </Row>
@@ -86,7 +87,7 @@ function RenderDish({ dish }) {
             </Card>; 
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, dishId }) {
     if(comments === null || comments === undefined) {
         return <div/>;
     } else{
@@ -100,33 +101,35 @@ function RenderComments({ comments }) {
         });
         return  <div>
                     {comments_list}
-                    <CommentForm></CommentForm>
+                    <CommentForm dishId={dishId} addComment={addComment}></CommentForm>
                 </div>;
     }
 }
 
-function DishDetail({ dish, comments}) {
-    if (dish === null || dish === undefined) {
+function DishDetail(props) {
+    if (props.dish === null || props.dish === undefined) {
         return <div></div>;
     } else {        
         return  <div className="container"> 
                     <div className="row">
                     <Breadcrumb>
                         <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
-                        <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
-                        <h3>{dish.name}</h3>
+                        <h3>{props.dish.name}</h3>
                         <hr />
                     </div>
                     </div> 
                     <div className='row'>
                         <div className="col-12 col-md-5 m-1">
-                        <RenderDish dish = { dish } />
+                        <RenderDish dish = { props.dish } />
                         </div>
                         <div className="col-12 col-md-5 m-1">
                             <h4>Comments</h4>
-                            <RenderComments comments= { comments } />
+                            <RenderComments comments= { props.comments } 
+                            addComment={props.addComment} 
+                            dishId={props.dish.id} />
                         </div>
                     </div>
                 </div>;
